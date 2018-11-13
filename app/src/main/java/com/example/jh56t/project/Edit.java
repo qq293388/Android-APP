@@ -11,7 +11,8 @@ import android.widget.TextView;
 public class Edit extends AppCompatActivity {
     EditText etName, etIP, etPort, etAccount, etPassword, etRemark;   // EditText
     public static MainActivity mainActivity;    // Implements of MainActivity class
-    public String s;
+    public String state;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +43,9 @@ public class Edit extends AppCompatActivity {
                                 it_edit.getStringExtra("port"), it_edit.getStringExtra("account"),
                                 it_edit.getStringExtra("password"), it_edit.getStringExtra("remark"),
                                 it_edit.getStringExtra("state")};
-
+        state = s[6];
         // 判斷按下的為編輯鈕則將ListView中的資料傳至EditText中顯示
-        if(s[6].equals("edit")){
+        if(state.equals("edit")){
             // Show the gotten data
             etName.setText(s[0]);
             etIP.setText(s[1]);
@@ -73,8 +74,13 @@ public class Edit extends AppCompatActivity {
         it_save.putExtra("account", accountStr);
         it_save.putExtra("password", passwordStr);
         it_save.putExtra("remark", remarkStr);
-        if(getIntentData().s6)
-        it_save.putExtra("state", "edit");
+
+        if(state.equals("edit")) {
+            it_save.putExtra("state", "edit");
+        }
+        else {
+            it_save.putExtra("state", "add");
+        }
 
         setResult(RESULT_OK, it_save);
         finish();
