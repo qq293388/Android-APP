@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class Edit extends AppCompatActivity {
     EditText etName, etIP, etPort, etAccount, etPassword, etRemark;   // EditText
     public static MainActivity mainActivity;    // Implements of MainActivity class
-
+    public String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
