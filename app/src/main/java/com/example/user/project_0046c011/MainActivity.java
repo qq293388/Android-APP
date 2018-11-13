@@ -1,10 +1,12 @@
 package com.example.user.project_0046c011;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_restore;
     private Button btn3;
     private Button btn4;
+    final int DIALOG_ID = 1;
+    private Button btn5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(listener);
         btn4 = (Button) findViewById(R.id.btn4);
         btn4.setOnClickListener(listener);
+        btn5 = (Button)findViewById(R.id.btn5);
+        btn5.setOnClickListener(btnAlertDialog_listener);
 
         btn_save.setOnClickListener(saveClickListener);
         btn_restore.setOnClickListener(restoreClickListener);
@@ -103,6 +109,35 @@ public class MainActivity extends AppCompatActivity {
 //            } );
 //            listDialog.show();
 //        }
+
+    Button.OnClickListener btnAlertDialog_listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            showDialog(DIALOG_ID);
+        }
+    };
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog = null;
+        switch (id) {
+            case DIALOG_ID:
+                final View content_layout = LayoutInflater.from(MainActivity.this).inflate(R.layout.content_layout, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Ambiguity Ratio Threshold");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        EditText edtxv = (EditText)findViewById(R.id.edtxv);
+
+                    }
+                });
+                dialog = builder.create();
+                break;
+                default:
+                    break;
+        }
+        return dialog;
+    }
+
 
     private Button.OnClickListener saveClickListener = new Button.OnClickListener() {
         @Override
