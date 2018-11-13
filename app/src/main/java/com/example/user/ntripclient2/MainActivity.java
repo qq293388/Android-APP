@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Cursor cur;
     SimpleCursorAdapter adapter;
     ListView listView;
+    private String test="temp"; //github測試用
     private TextView textview;
     private Button bt_show;
     private Button bt_connect;
